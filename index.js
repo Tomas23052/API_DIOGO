@@ -146,6 +146,6 @@ app.post("/delete/:blog_id", async (req, res) => {
   });
 
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log(`Your server ⚡ is running 🏃‍♂️ on ${PORT}`);
 });

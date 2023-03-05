@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 
 
 app.post("/create", async(req,res) =>{
-    if(!req.body.blogs || req.body.blogs ===""){
+    if(!req.body.title || req.body.title ===""){
         res.status(400).send("Insira um artigo");
     }else{
         const option ={

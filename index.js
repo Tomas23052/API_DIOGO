@@ -1,8 +1,11 @@
 // import express
 const express = require("express");
+var bodyParser = require("body-parser");
 const app = express();
 
-app.use(express.urlencoded({extended: true}));
+var jsonParser = bodyParser.json()
+
+var urlencoderParser = bodyParser.urlencoded({extended: false})
 
 var cors = require("cors");
 
@@ -17,33 +20,67 @@ app.get("/", (req, res) => {
 });
 
 
-app.post("/create", async(req,res) =>{
-    if(!req.body.blogs || req.body.blogs ===""){
-        res.status(400).send("Insira um artigo");
-    }else{
-        const option ={
-            status: "ok",
-            title: req.body.title,
-            description: req.body.description,
-            image_url: req.body.image_url
-        };
+// 1. create your post route that handles creating new todo item
 
-        try{
-            const response = await db.insert({
-                table: "items",
-                records: [option],
-            });
+app.post("/add",jsonParser, async (req, res) => {
 
-            res.status(200).send(response);
-        }catch(error){
-            res.status(500).send(error);
-        }
+  // 2. retrieve the todo from req.body
+
+  // 3. Validate the todo to nsure the user does not submit an empty form
+
+  
+  if (req.body.title === "") {
+
+    res.status(400).send("Todo is required");
+    
+    } else {
+    // 4. prepare the todo in an object
+
+    const option = {
+
+      title: req.body.title,
+      description: req.body.description,
+      image_url: req.body.image_url
+
+    };
+
+    console.log([option])
+
+    // 5. ensure to catch the error using try/catch
+
+    try {
+
+      // 6. if the todo is not empty
+
+      const response = await db.insert({
+
+        table: "items",
+
+        records: [option],
+
+      });
+
+      // 7. notify the frontend or sender with the success response
+
+      res.status(200).send(response);
+
+    } catch (error) {
+
+      // 7. notify the frontend or sender with the error response
+
+      res.status(500).send(error);
+
     }
+
+    }
+
 });
+
+// just a notification in the console
 
 app.get("/blogs", async (req,res)=>{
     try{
-        const response = await db.query("SELECT * FROM blogs.items");
+        const response = await db.query("SELECT * FROM blogs.items  ORDER BY __createdtime__ DESC");
 
         res.status(200).send(response);
     }catch(error){
@@ -65,7 +102,7 @@ app.get("/blogs/:blog_id", async (req,res)=>{
 });
 // 1. route to update a todo
 
-app.post("/edit", async (req, res) => {
+app.post("/edit",jsonParser, async (req, res) => {
 
     // 2. set the updated todo and specify the todo identifier - hash attribute
   
@@ -81,6 +118,8 @@ app.post("/edit", async (req, res) => {
   
     };
   
+
+    console.log([option])
     // 3. use try/catch to control errors
   
     try {

@@ -10,7 +10,7 @@ app.use(cors());
 
 const db = require("./dbconfig");
 // set your preferred server port
-const port = 3000;
+const port = process.env.port
 // root endpoint response
 app.get("/", (req, res) => {
   res.send("Hello, World!");

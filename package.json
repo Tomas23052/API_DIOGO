@@ -1,0 +1,18 @@
+{
+  "name": "API_DIOGO",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Tomas23052/API_DIOGO.git",
+  "author": "Tomas23052 <aluno23052@ipt.pt>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "harperive": "^2.0.1",
+    "nodemon": "^2.0.21"
+  }
+}

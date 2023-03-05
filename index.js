@@ -10,7 +10,7 @@ app.use(cors());
 
 const db = require("./dbconfig");
 // set your preferred server port
-const port = process.env.port
+const PORT = process.env.PORT || 8081;
 // root endpoint response
 app.get("/", (req, res) => {
   res.send("Hello, World!");
@@ -147,5 +147,5 @@ app.post("/delete/:blog_id", async (req, res) => {
 
 
 app.listen(port, () => {
-  console.log(`Your server ⚡ is running 🏃‍♂️ on http://localhost:${port}`);
+  console.log(`Your server ⚡ is running 🏃‍♂️ on ${PORT}`);
 });

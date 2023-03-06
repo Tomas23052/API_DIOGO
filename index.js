@@ -90,7 +90,7 @@ app.get("/blogs", async (req,res)=>{
 
 app.get("/blogs/few", async (req,res)=>{
   try{
-      const response = await db.query("SELECT * FROM blogs.items LIMIT = 5 ORDER BY __createdtime__ DESC");
+      const response = await db.query("SELECT TOP 5 * FROM blogs.items ORDER BY __createdtime__ DESC");
 
       res.status(200).send(response);
   }catch(error){

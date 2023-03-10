@@ -111,7 +111,7 @@ app.get("/blogs/few3", async (req,res)=>{
 app.get("/blogs/:blog_id", async (req,res)=>{
     try{
 
-        const { blog_id} = req.params
+        const { blog_id} = req.params.blog_id
 
         const response = await db.query(`SELECT * FROM blogs.items WHERE id ='${blog_id}'`);
 

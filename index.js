@@ -117,7 +117,7 @@ app.get("/blogs/:blog_id", async (req,res)=>{
 
         res.status(200).send(response);
     }catch(error){
-        res.status(500).send("Alguma coisa correu mal");
+        res.status(500).send("Alguma coisa correu mal!");
     }
 });
 // 1. route to update a todo
